@@ -1,0 +1,55 @@
+﻿@model MartenExample.Views.ViewModel.CustomerView
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <table border="1" class="table table-bordered">
+        <thead>
+            <tr class="btn-primary">
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.customer.Id</td>
+                <td>@Model.customer.Name</td>
+            </tr>
+        </tbody>
+    </table>
+    <table border="1" class="table table-bordered">
+        <thead>
+            <tr class="btn-primary">
+                <th>Order ID</th>
+                <th>Item Count</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.orders)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Items.Count</td>
+                    <td class="money">@item.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section scripts {
+    <script>
+
+        $('.money').each(function () {
+            var item = $(this).text();
+            var num = Number(item).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+            $(this).text(num);
+        });
+
+    </script>
+}

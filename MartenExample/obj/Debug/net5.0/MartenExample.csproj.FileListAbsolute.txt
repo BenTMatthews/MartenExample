@@ -15,7 +15,6 @@ C:\projects\MartenExample\MartenExample\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\projects\MartenExample\MartenExample\bin\Debug\net5.0\Npgsql.dll
 C:\projects\MartenExample\MartenExample\bin\Debug\net5.0\Npgsql.Json.NET.dll
 C:\projects\MartenExample\MartenExample\bin\Debug\net5.0\Remotion.Linq.dll
-C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.csprojAssemblyReference.cache
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.GeneratedMSBuildEditorConfig.editorconfig
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.AssemblyInfoInputs.cache
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.AssemblyInfo.cs
@@ -44,3 +43,4 @@ C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.dll
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\ref\MartenExample.dll
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.pdb
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.genruntimeconfig.cache
+C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\Razor\Views\Home\CustomerView.cshtml.g.cs
