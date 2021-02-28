@@ -9,16 +9,18 @@
         <thead>
             <tr class="btn-primary">
                 <th>ID</th>
-                <th>Name</th>                
+                <th>Name</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td><a href="/Customer/@item.Id">@item.Id</a></td>
-                    <td><a href="/Customer/@item.Id">@item.Name</a></td>
-                </tr>
+            <tr>
+                <td><a href="/Customer/@item.Id">@item.Id</a></td>
+                <td><a href="/Customer/@item.Id">@item.Name</a></td>
+                <td><a href="/Customer/@item.Id">@item.Email</a></td>
+            </tr>
 
             }
         </tbody>

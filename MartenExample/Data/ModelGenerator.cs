@@ -80,16 +80,16 @@ namespace MartenExample.Data
         {
             List<Customer> customers = new List<Customer>();
 
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Dan Rydell" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Casey McCall" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Dana Whitaker" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Jeremy Goodwin" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Natalie Hurley" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Isaac Jaffe" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Rebecca Wells" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Sally Sasser" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Sam Donovan" });
-            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Abby Jacobs" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Dan Rydell", Email = "drydell@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Casey McCall", Email = "cmccall@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Dana Whitaker", Email = "dwhitaker@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Jeremy Goodwin", Email = "jgoodwin@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Natalie Hurley", Email = "nhurley@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Isaac Jaffe", Email = "ijaffe@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Rebecca Wells", Email = "rwells@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Sally Sasser", Email = "ssasser@continentalcorp.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Sam Donovan", Email = "cliffgardnerfan123@gmail.com" });
+            customers.Add(new Customer { Id = Guid.NewGuid(), Name = "Abby Jacobs", Email = "ajacobs@continentalcorp.com" });
 
             return customers;
         }

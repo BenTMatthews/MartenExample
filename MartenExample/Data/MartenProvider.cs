@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MartenExample.Data
 {
-    public class MartenProvider
+    public class MartenProvider : IExampleDataProvider
     {
 
         private DocumentStore _store { get; }
@@ -23,6 +23,9 @@ namespace MartenExample.Data
                 x.Serializer(new JsonNetSerializer { EnumStorage = EnumStorage.AsInteger });
 
                 x.Schema.For<Order>().ForeignKey<Customer>(y => y.CustomerId);
+
+                //Add Email Column
+                x.Schema.For<Customer>().Duplicate(x => x.Email, pgType: "varchar(100)", notNull: true);
 
                 x.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
             });
@@ -46,32 +49,6 @@ namespace MartenExample.Data
                 return default(Guid);
 
             }
-        }
-
-
-        public CustomerView GetCustomerAndOrders(Guid id)
-        {
-            Customer existing;
-            List<Order> custOrders;
-            CustomerView result = new CustomerView();
-
-            try
-            {
-                using (var session = _store.QuerySession())
-                {
-                    existing = session.Load<Customer>(id);
-                    custOrders = session.Query<Order>().Where(x => x.CustomerId == id).ToList();
-                }
-
-                result.customer = existing;
-                result.orders = custOrders;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-            return result;
         }
 
         public Guid SaveOrder(Order item)
@@ -112,6 +89,59 @@ namespace MartenExample.Data
 
             return existing;
         }
+
+        public CustomerView GetCustomerView(Guid id)
+        {
+            Customer existing;
+            List<Order> custOrders;
+            CustomerView result = new CustomerView();
+
+            try
+            {
+                using (var session = _store.QuerySession())
+                {
+                    existing = session.Load<Customer>(id);
+                    custOrders = session.Query<Order>().Where(x => x.CustomerId == id).ToList();
+                }
+
+                result.customer = existing;
+                result.orders = custOrders;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return result;
+        }
+
+        public OrderView GetOrderView(Guid id)
+        {
+            Customer customer = new Customer();
+            Order order;
+            OrderView result = new OrderView();
+
+            try
+            {
+                using (var session = _store.QuerySession())
+                {
+                    order = session.Query<Order>()
+                        .Include<Customer>(x => x.CustomerId, x => customer = x)
+                        .Where(x => x.Id == id)
+                        .Single();
+                }
+
+                result.customer = customer;
+                result.order = order;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return result;
+        }
+        
 
         public List<T> GetAllItems<T>()
         {

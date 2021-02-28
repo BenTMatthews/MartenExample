@@ -1,4 +1,5 @@
 ﻿using MartenExample.Data;
+using MartenExample.Interfaces;
 using MartenExample.Models;
 using MartenExample.Views.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -14,30 +15,38 @@ namespace MartenExample.Controllers
     [Route("")]
     public class HomeController : Controller
     {
-        private MartenProvider _martenProvider;
-        public HomeController(MartenProvider martenProvider)
+        private IExampleDataProvider _dataProvider;
+
+        public HomeController(IExampleDataProvider dataProvider)
         {
-            _martenProvider = martenProvider;
+            _dataProvider = dataProvider;
         }
 
         [Route("")]
         public IActionResult Index()
         {
-            //Customer cust = new Customer();
-            //cust.Name = "Connie Nelson";
-
-            //_martenProvider.SaveItem<Guid>(cust);
-
-            var items = _martenProvider.GetAllItems<Customer>();
-
-            ModelGenerator mg = new ModelGenerator();
-
-            var prods = mg.GenerateProducts();
+            var items = _dataProvider.GetAllItems<Customer>();
 
             return View(items);
+        }        
+
+        [Route("/Customer/{id}")]
+        public IActionResult CustomerView(Guid id)
+        {
+            CustomerView cv = _dataProvider.GetCustomerView(id);
+
+            return View(cv);
         }
 
-        [Route("/Generate")]
+        [Route("/Order/{id}")]
+        public IActionResult OrderView(Guid id)
+        {
+            OrderView cv = _dataProvider.GetOrderView(id);
+
+            return View(cv);
+        }
+
+        [Route("Generate")]
         public IActionResult Generate()
         {
             ModelGenerator mg = new ModelGenerator();
@@ -46,21 +55,13 @@ namespace MartenExample.Controllers
             List<Customer> customers = mg.GenerateCustomers();
             List<Order> orders = mg.GenerateOrders(customers.Select(cust => cust.Id).ToList(), products);
 
-            _martenProvider.CleanHouse();
+            _dataProvider.CleanHouse();
 
-            _martenProvider.BulkInsert(products);
-            _martenProvider.BulkInsert(customers);
-            _martenProvider.BulkInsert(orders);
+            _dataProvider.BulkInsert(products);
+            _dataProvider.BulkInsert(customers);
+            _dataProvider.BulkInsert(orders);
 
             return Content("Done");
-        }
-
-        [Route("/Customer/{id}")]
-        public IActionResult CustomerView(Guid id)
-        {
-            CustomerView cv = _martenProvider.GetCustomerAndOrders(id);
-
-            return View(cv);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

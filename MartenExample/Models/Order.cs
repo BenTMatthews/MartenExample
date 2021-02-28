@@ -1,5 +1,4 @@
 ﻿using Marten.Schema;
-using MartenExample.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

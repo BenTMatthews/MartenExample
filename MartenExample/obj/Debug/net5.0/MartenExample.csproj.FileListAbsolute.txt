@@ -44,3 +44,5 @@ C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\ref\MartenExample.dll
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.pdb
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.genruntimeconfig.cache
 C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\Razor\Views\Home\CustomerView.cshtml.g.cs
+C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\MartenExample.csprojAssemblyReference.cache
+C:\projects\MartenExample\MartenExample\obj\Debug\net5.0\Razor\Views\Home\OrderView.cshtml.g.cs

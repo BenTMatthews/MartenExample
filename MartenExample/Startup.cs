@@ -1,4 +1,5 @@
 using MartenExample.Data;
+using MartenExample.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +26,12 @@ namespace MartenExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            MartenProvider provider = new MartenProvider(Configuration["PostGres:connString"]);
-            services.AddSingleton(provider); 
+
+            //services.AddSingleton(provider);
+            services.AddTransient<IExampleDataProvider>(provider =>
+            {
+                return new MartenProvider(Configuration["PostGres:connString"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

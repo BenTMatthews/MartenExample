@@ -1,9 +1,8 @@
-﻿@model MartenExample.Views.ViewModel.CustomerView
+﻿@model MartenExample.Views.ViewModel.OrderView
 
 @{
-    ViewData["Title"] = "Customer View";
+    ViewData["Title"] = "Order View";
 }
-
 
 <div class="text-center">
     <table border="1" class="table table-bordered">
@@ -11,34 +10,37 @@
             <tr class="btn-primary">
                 <th>ID</th>
                 <th>Name</th>
+                <th>Order ID</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>@Model.customer.Id</td>
                 <td>@Model.customer.Name</td>
+                <td>@Model.order.Id</td>
             </tr>
         </tbody>
     </table>
     <table border="1" class="table table-bordered">
         <thead>
             <tr class="btn-primary">
-                <th>Order ID</th>
-                <th>Item Count</th>
-                <th>Total</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.orders)
+            @foreach (var item in Model.order.Items)
             {
                 <tr>
-                    <td><a href="/Order/@item.Id">@item.Id</a></td>
-                    <td><a href="/Order/@item.Id">@item.Items.Count</a></td>
-                    <td class="money"><a href="/Order/@item.Id">@item.Total</a></td>
+                    <td>@item.Id</td>
+                    <td>@item.name</td>
+                    <td class="money">@item.price</td>
                 </tr>
             }
         </tbody>
     </table>
+    
 </div>
 
 @section scripts {

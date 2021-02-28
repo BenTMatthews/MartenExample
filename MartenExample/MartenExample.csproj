@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\MartenProvider_Generic.cs" />
+    <Compile Remove="Interfaces\GuidModel.cs" />
+    <Compile Remove="Interfaces\IntModel.cs" />
+    <Compile Remove="Interfaces\MartenInterface.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Marten" Version="3.13.3" />
   </ItemGroup>
 
