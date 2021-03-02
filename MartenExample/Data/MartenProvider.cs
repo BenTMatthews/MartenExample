@@ -92,20 +92,16 @@ namespace MartenExample.Data
 
         public CustomerView GetCustomerView(Guid id)
         {
-            Customer existing;
-            List<Order> custOrders;
             CustomerView result = new CustomerView();
 
             try
             {
                 using (var session = _store.QuerySession())
                 {
-                    existing = session.Load<Customer>(id);
-                    custOrders = session.Query<Order>().Where(x => x.CustomerId == id).ToList();
+                    result.customer = session.Load<Customer>(id);
+                    result.orders = session.Query<Order>().Where(x => x.CustomerId == id).ToList();
                 }
 
-                result.customer = existing;
-                result.orders = custOrders;
             }
             catch (Exception ex)
             {
@@ -141,17 +137,28 @@ namespace MartenExample.Data
 
             return result;
         }
-        
+
+        public List<Customer> GetAllCustomers(int skipCount = 0, int takeCount = 100)
+        {
+            List<Customer> customers = new List<Customer>();
+
+            using(var session = _store.QuerySession())
+            {
+                customers = session.Query<Customer>().Skip(skipCount).Take(takeCount).ToList();
+            }
+
+            return customers;
+        }
 
         public List<T> GetAllItems<T>()
         {
-            List<T> existing = new List<T>();
+            //List<T> existing = new List<T>();
 
             try
             {
                 using (var session = _store.QuerySession())
                 {
-                    existing = session.Query<T>().ToList();
+                    return session.Query<T>().ToList();
                 }
             }
             catch (Exception ex)
@@ -159,7 +166,7 @@ namespace MartenExample.Data
                 return null;
             }
 
-            return existing;
+            //return existing;
         }
 
         public bool BulkInsert<T>(List<T> items)

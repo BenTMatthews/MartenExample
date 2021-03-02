@@ -13,6 +13,8 @@ namespace MartenExample.Interfaces
 
         public Guid SaveOrder(Order item);
 
+        public List<Customer> GetAllCustomers(int skipCount = 0, int takeCount = 100);
+
         public CustomerView GetCustomerView(Guid id);
 
         public OrderView GetOrderView(Guid id);        

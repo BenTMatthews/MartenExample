@@ -25,7 +25,7 @@ namespace MartenExample.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            var items = _dataProvider.GetAllItems<Customer>();
+            var items = _dataProvider.GetAllCustomers();
 
             return View(items);
         }        

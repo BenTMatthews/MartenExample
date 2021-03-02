@@ -27,7 +27,7 @@ namespace MartenExample
         {
             services.AddControllersWithViews();
 
-            //services.AddSingleton(provider);
+            //TODO: Add data provider
             services.AddTransient<IExampleDataProvider>(provider =>
             {
                 return new MartenProvider(Configuration["PostGres:connString"]);
